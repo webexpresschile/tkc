@@ -1,0 +1,35 @@
+=================================================================
+TRANSPORTES REMY - INSTRUCCIONES DE SEPARACIÓN DE ARCHIVOS
+=================================================================
+
+IMPORTANTE: Los archivos CSS y JavaScript necesitan ser extraídos del archivo ORIGINAL.html
+
+PASOS PARA COMPLETAR LA SEPARACIÓN:
+
+1. EXTRAER CSS:
+   - Abre ORIGINAL.html
+   - Copia todo el contenido entre <style> y </style>
+   - Pégalo en css/style.css
+
+2. EXTRAER JAVASCRIPT:
+   - En ORIGINAL.html, copia todo el contenido entre <script> y </script>
+   - Pégalo en js/main.js
+
+3. CREAR PÁGINAS DE PRODUCTOS:
+   - Usa la plantilla en camiones/volvo-fh16.html (ya creada)
+   - Copia y modifica para cada vehículo
+   - Cambia título, descripción y especificaciones
+
+4. PERSONALIZAR:
+   - Cambia número de WhatsApp en js/main.js
+   - Actualiza información de contacto en index.html
+   - Agrega imágenes reales de tu flota
+
+ESTRUCTURA COMPLETA:
+├── index.html (página principal con botones "Ver más")
+├── ORIGINAL.html (referencia con todo el código)
+├── css/style.css (extraer de ORIGINAL.html)
+├── js/main.js (extraer de ORIGINAL.html)
+├── camiones/ (páginas individuales)
+└── plataformas/ (páginas individuales)
+

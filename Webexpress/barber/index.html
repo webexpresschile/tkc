@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FADE STUDIO — El Estándar de Oro en Cortes Masculinos</title>
+  <meta name="description" content="Fade Studio. Cortes masculinos de alto nivel en Puerto Cabello. Técnica clásica con tendencia urbana. Reserva tu turno con Carlos Fadez.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --g:#A6894A; --gl:#C9A86C; --gg:rgba(166,137,74,.2);
+      --k:#0A0A0A; --s:#131313; --s2:#1A1A1A; --sm:#252525;
+      --w:#FFF; --gr:#C8C8C8; --dm:#5C5C5C;
+      --ease:cubic-bezier(.16,1,.3,1);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{font-size:16px;scroll-behavior:smooth}
+    body{background:var(--k);color:var(--w);font-family:'Montserrat',sans-serif;overflow-x:hidden;cursor:none}
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none}
+    /* grain */
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;mix-blend-mode:overlay}
+
+    /* CURSOR */
+    .cdot{width:7px;height:7px;background:var(--g);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9000;transform:translate(-50%,-50%)}
+    .cring{width:38px;height:38px;border:1px solid rgba(166,137,74,.55);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:8999;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .35s}
+    .cring.h{width:62px;height:62px;opacity:.9}
+    .cring.c{width:20px;height:20px;opacity:1}
+
+    /* NAV */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:700;display:flex;align-items:center;justify-content:space-between;padding:2rem 5vw;transition:padding .5s var(--ease),background .5s}
+    .nav.stuck{padding:.9rem 5vw;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(166,137,74,.12)}
+    .logo{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:5px;line-height:1}
+    .logo b{color:var(--g);font-weight:400}
+    .nlinks{display:flex;align-items:center;gap:3.5rem}
+    .nlinks a{font-size:.72rem;font-weight:600;letter-spacing:2.8px;text-transform:uppercase;color:var(--dm);position:relative;transition:color .3s}
+    .nlinks a::after{content:'';position:absolute;bottom:-5px;left:0;height:1px;width:0;background:var(--g);transition:width .4s var(--ease)}
+    .nlinks a:hover{color:var(--w)}
+    .nlinks a:hover::after{width:100%}
+    .nbtn{font-size:.72rem!important;font-weight:700!important;color:var(--k)!important;background:var(--g);padding:.65rem 1.8rem!important;letter-spacing:2px!important;transition:background .3s,transform .2s!important}
+    .nbtn::after{display:none!important}
+    .nbtn:hover{background:var(--gl)!important;transform:translateY(-2px)}
+    .burger{display:none;flex-direction:column;gap:6px;cursor:none;z-index:800}
+    .burger span{display:block;width:26px;height:1px;background:var(--w);transition:.35s}
+    .burger.o span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .burger.o span:nth-child(2){opacity:0}
+    .burger.o span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    /* HERO */
+    .hero{position:relative;height:100svh;min-height:680px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+    .hero-ghost{position:absolute;left:0;bottom:-.5rem;font-family:'Bebas Neue',sans-serif;font-size:28vw;color:var(--w);opacity:.022;line-height:1;pointer-events:none;white-space:nowrap;z-index:1}
+    .hero-l{position:relative;z-index:2;background:var(--k);display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 8vh}
+    .hero-l::after{content:'';position:absolute;right:0;top:8%;bottom:8%;width:1px;background:linear-gradient(to bottom,transparent,var(--g) 30%,var(--g) 70%,transparent);opacity:.3}
+    .hero-r{position:relative;overflow:hidden}
+    .hero-r img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) contrast(1.05);transform:scale(1.06);animation:hReveal 2s var(--ease) .2s forwards}
+    .hero-r::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--k) 0%,transparent 35%)}
+    @keyframes hReveal{to{transform:scale(1)}}
+
+    .eyebrow-hero{display:flex;align-items:center;gap:.9rem;margin-bottom:2.5rem;opacity:0;transform:translateY(16px);animation:up .7s var(--ease) .5s forwards}
+    .eyebrow-hero::before{content:'';width:36px;height:1px;background:var(--g);flex-shrink:0}
+    .eyebrow-hero span{font-size:.68rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--g)}
+    .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,6.5vw,7rem);line-height:.92;letter-spacing:2px;text-transform:uppercase;opacity:0;transform:translateY(30px);animation:up 1s var(--ease) .7s forwards}
+    .hero h1 mark{background:none;color:var(--g)}
+    .hero-sub{margin-top:2.2rem;font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-weight:300;font-style:italic;color:var(--gr);line-height:1.75;max-width:420px;opacity:0;transform:translateY(16px);animation:up .8s var(--ease) 1s forwards}
+    .hero-act{display:flex;align-items:center;gap:2rem;margin-top:3rem;flex-wrap:wrap;opacity:0;transform:translateY(16px);animation:up .8s var(--ease) 1.2s forwards}
+
+    .btn-g{display:inline-flex;align-items:center;gap:.7rem;background:var(--g);color:var(--k);font-size:.75rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;padding:1.1rem 2.8rem;position:relative;overflow:hidden;transition:box-shadow .3s,transform .25s}
+    .btn-g::before{content:'';position:absolute;inset:0;background:var(--w);transform:translateX(-105%);transition:transform .5s var(--ease)}
+    .btn-g span{position:relative;z-index:1}
+    .btn-g:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(166,137,74,.38)}
+    .btn-g:hover::before{transform:translateX(0)}
+    .btn-t{font-size:.73rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--dm);border-bottom:1px solid var(--sm);padding-bottom:3px;transition:color .3s,border-color .3s}
+    .btn-t:hover{color:var(--g);border-color:var(--g)}
+
+    .hero-scroll{position:absolute;bottom:3.5rem;right:5vw;z-index:4;display:flex;flex-direction:column;align-items:center;gap:1rem}
+    .scroll-word{font-size:.6rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--dm);writing-mode:vertical-rl}
+    .scroll-wire{width:1px;height:70px;background:linear-gradient(to bottom,var(--g),transparent);animation:pulse 2.2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.4);opacity:.3}}
+
+    /* SHARED */
+    .ey{display:inline-flex;align-items:center;gap:.8rem;font-size:.68rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--g);margin-bottom:1.2rem}
+    .ey::before{content:'';width:30px;height:1px;background:var(--g);flex-shrink:0}
+    .st{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,4.5vw,4.8rem);letter-spacing:2px;text-transform:uppercase;line-height:.95;color:var(--w)}
+    .gr{width:50px;height:2px;background:var(--g);display:block;margin-top:1.4rem}
+    .div{height:1px;background:linear-gradient(to right,transparent,var(--g) 20%,var(--g) 80%,transparent);opacity:.18}
+
+    /* SERVICES */
+    #servicios{background:var(--s);padding:10rem 5vw;position:relative;overflow:hidden}
+    #servicios::before{content:'CUT';position:absolute;right:-3rem;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'Bebas Neue',sans-serif;font-size:18vw;color:var(--w);opacity:.018;pointer-events:none;white-space:nowrap}
+    .sh{max-width:560px;margin-bottom:5rem}
+    .sg{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+    .sc{background:var(--s2);padding:3.5rem 2.8rem 3rem;position:relative;overflow:hidden;transition:background .4s}
+    .sc::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--g);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
+    .sc::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 0% 0%,var(--gg) 0%,transparent 60%);opacity:0;transition:opacity .5s}
+    .sc:hover{background:var(--sm)}
+    .sc:hover::before{transform:scaleX(1)}
+    .sc:hover::after{opacity:1}
+    .sn{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;color:var(--g);opacity:.12;transition:opacity .4s}
+    .sc:hover .sn{opacity:.35}
+    .si{font-size:2.2rem;margin:.5rem 0 1.8rem}
+    .sname{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;color:var(--w);margin-bottom:.9rem;position:relative;z-index:1}
+    .sdesc{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:300;color:var(--gr);line-height:1.75;position:relative;z-index:1}
+    .sm-{display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g);opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .35s,gap .3s;position:relative;z-index:1}
+    .sm- .arr{transition:transform .3s}
+    .sc:hover .sm-{opacity:1;transform:translateX(0)}
+    .sc:hover .sm- .arr{transform:translateX(5px)}
+
+    /* LOOKBOOK */
+    #lookbook{background:var(--k);padding:10rem 5vw}
+    .lh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;flex-wrap:wrap;gap:2rem}
+    .lg{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:240px;gap:6px}
+    .li:nth-child(1){grid-column:1/6;grid-row:1/3}
+    .li:nth-child(2){grid-column:6/9;grid-row:1/2}
+    .li:nth-child(3){grid-column:9/13;grid-row:1/2}
+    .li:nth-child(4){grid-column:6/10;grid-row:2/3}
+    .li:nth-child(5){grid-column:10/13;grid-row:2/3}
+    .li{position:relative;overflow:hidden;background:var(--sm);cursor:none}
+    .li img{width:100%;height:100%;object-fit:cover;filter:grayscale(25%);transition:transform .75s var(--ease),filter .5s}
+    .li:hover img{transform:scale(1.08);filter:grayscale(0%)}
+    .lo{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.88) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:1.6rem}
+    .li:hover .lo{opacity:1}
+    .ltag{font-size:.66rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--g)}
+    .lz{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:56px;height:56px;border:1px solid var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;line-height:1;color:var(--g);transition:transform .45s var(--ease)}
+    .li:hover .lz{transform:translate(-50%,-50%) scale(1)}
+
+    /* LIGHTBOX */
+    .lbox{position:fixed;inset:0;background:rgba(0,0,0,.93);backdrop-filter:blur(10px);z-index:5000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+    .lbox.on{opacity:1;pointer-events:all}
+    .lbw{position:relative;transform:scale(.88);transition:transform .55s var(--ease)}
+    .lbox.on .lbw{transform:scale(1)}
+    .lbw img{max-width:88vw;max-height:84vh;object-fit:contain;display:block}
+    .lbcap{margin-top:1.2rem;text-align:center;font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--g)}
+    .lbcl{position:absolute;top:-14px;right:-14px;width:46px;height:46px;background:var(--s2);border:1px solid rgba(166,137,74,.35);color:var(--gr);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:none;transition:background .3s,color .3s,border-color .3s}
+    .lbcl:hover{background:var(--g);color:var(--k);border-color:var(--g)}
+
+    /* ABOUT */
+    #nosotros{background:var(--s);padding:10rem 5vw;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center}
+    .ai{position:relative}
+    .ai img{width:100%;height:580px;object-fit:cover;filter:grayscale(15%)}
+    .ai::before{content:'';position:absolute;top:-18px;left:-18px;width:90px;height:90px;border-top:2px solid var(--g);border-left:2px solid var(--g)}
+    .ai::after{content:'';position:absolute;bottom:-18px;right:-18px;width:90px;height:90px;border-bottom:2px solid var(--g);border-right:2px solid var(--g)}
+    .ab{position:absolute;bottom:2.5rem;right:-2.5rem;background:var(--g);color:var(--k);padding:1.4rem 1.6rem;text-align:center;z-index:1}
+    .ab strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:3.2rem;line-height:1}
+    .ab span{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+    .at .st{margin-bottom:2rem}
+    .ap{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:300;color:var(--gr);line-height:1.9;margin-bottom:1.4rem}
+    .as{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;padding-top:3rem;border-top:1px solid var(--sm)}
+    .av{font-family:'Bebas Neue',sans-serif;font-size:3.4rem;color:var(--g);line-height:1}
+    .al{font-size:.64rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dm);margin-top:.4rem}
+
+    /* TESTIMONIALS */
+    #testimonios{background:var(--k);padding:10rem 5vw}
+    .th{text-align:center;margin-bottom:5rem}
+    .th .ey{justify-content:center;display:flex}
+    .th .ey::before{display:none}
+    .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+    .tc{background:var(--s);padding:3rem 2.6rem;position:relative;transition:background .35s}
+    .tc:hover{background:var(--s2)}
+    .tq{font-family:'Bebas Neue',sans-serif;font-size:5.5rem;line-height:.8;color:var(--g);opacity:.12}
+    .ts{display:flex;gap:3px;margin:.8rem 0 1.4rem}
+    .ts span{color:var(--g);font-size:.85rem}
+    .tt{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;font-weight:300;color:var(--gr);line-height:1.8;margin-bottom:2.2rem}
+    .ta{display:flex;align-items:center;gap:1rem}
+    .tav{width:46px;height:46px;border-radius:50%;object-fit:cover;border:1px solid var(--g);filter:grayscale(30%)}
+    .tn{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+    .tr{font-size:.68rem;color:var(--dm);margin-top:.2rem}
+
+    /* CTA */
+    #reserva{background:var(--s);padding:12rem 5vw;text-align:center;position:relative;overflow:hidden}
+    #reserva::before{content:'BOOK';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:35vw;color:var(--w);opacity:.02;pointer-events:none}
+    .cw{position:relative;z-index:1}
+    .ctag{font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--g);margin-bottom:1.5rem}
+    .ct{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.2rem,7vw,7.5rem);letter-spacing:3px;text-transform:uppercase;color:var(--w);line-height:.95;margin-bottom:1.8rem}
+    .ct em{font-style:normal;color:var(--g)}
+    .cs{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--gr);max-width:500px;margin:0 auto 3.5rem;line-height:1.7}
+    .cb{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+    .btn-o{display:inline-flex;align-items:center;gap:.6rem;padding:1.05rem 2.4rem;border:1px solid rgba(166,137,74,.5);font-size:.73rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g);transition:background .3s,border-color .3s}
+    .btn-o:hover{background:var(--gg);border-color:var(--g)}
+
+    /* FOOTER */
+    footer{background:#060606;padding:7rem 5vw 3rem;border-top:1px solid rgba(166,137,74,.12)}
+    .fg{display:grid;grid-template-columns:2.2fr 1fr 1fr;gap:6vw;margin-bottom:5rem}
+    .fb .logo{font-size:2.4rem;margin-bottom:1.6rem;display:block}
+    .ftag{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:var(--dm);line-height:1.75;max-width:300px;margin-bottom:2.5rem}
+    .fsoc{display:flex;gap:1rem}
+    .fsb{width:40px;height:40px;border:1px solid var(--sm);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--dm);transition:border-color .3s,color .3s}
+    .fsb:hover{border-color:var(--g);color:var(--g)}
+    .fct{font-size:.66rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:2rem}
+    .fl{display:flex;flex-direction:column;gap:1.1rem}
+    .fl a{font-size:.86rem;color:var(--dm);transition:color .3s}
+    .fl a:hover{color:var(--w)}
+    .fbot{padding-top:2.5rem;border-top:1px solid var(--sm);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .fco,.fleg a{font-size:.68rem;color:var(--dm);letter-spacing:.8px}
+    .fleg{display:flex;gap:2rem}
+    .fleg a:hover{color:var(--g)}
+
+    /* SCROLL REVEAL */
+    .rv{opacity:0;transform:translateY(44px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rvl{opacity:0;transform:translateX(-54px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rvr{opacity:0;transform:translateX(54px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rv.on,.rvl.on,.rvr.on{opacity:1;transform:none}
+    .d1{transition-delay:.12s}
+    .d2{transition-delay:.24s}
+
+    @keyframes up{to{opacity:1;transform:none}}
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){
+      .hero{grid-template-columns:1fr}
+      .hero-r{position:absolute;inset:0}
+      .hero-r::after{background:linear-gradient(to right,rgba(10,10,10,.88) 0%,rgba(10,10,10,.4) 100%)}
+      .hero-l{justify-content:flex-end;padding:0 6vw 10vh;position:relative;z-index:2}
+      .sg{grid-template-columns:1fr;gap:2px}
+      .lg{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+      .li{grid-column:auto!important;grid-row:auto!important}
+      #nosotros{grid-template-columns:1fr}
+      .ab{right:0}
+      .tg{grid-template-columns:1fr;gap:2px}
+      .fg{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:680px){
+      .nav{padding:1.4rem 5vw}
+      .nav.stuck{padding:.8rem 5vw}
+      .nlinks{display:none}
+      .nlinks.o{display:flex;flex-direction:column;gap:2.5rem;position:fixed;inset:0;background:rgba(10,10,10,.97);align-items:center;justify-content:center;z-index:750;padding:2rem}
+      .nlinks.o a{font-size:1rem}
+      .burger{display:flex}
+      #servicios,#lookbook,#nosotros,#testimonios,#reserva{padding:6rem 5vw}
+      .lg{grid-template-columns:1fr;grid-auto-rows:260px}
+      .as{grid-template-columns:1fr 1fr}
+      footer{padding:5rem 5vw 2.5rem}
+      .fg{grid-template-columns:1fr;gap:3rem}
+      .fbot{flex-direction:column;text-align:center}
+      body{cursor:default}
+      .cdot,.cring{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<div class="cdot" id="cDot"></div>
+<div class="cring" id="cRing"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="logo"><b>FADE</b> STUDIO</div>
+  <ul class="nlinks" id="nLinks">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#lookbook">Lookbook</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#testimonios">Reviews</a></li>
+    <li><a href="#reserva" class="nbtn">Reservar</a></li>
+  </ul>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-ghost">FADE</div>
+  <div class="hero-l">
+    <div class="eyebrow-hero"><span>Carlos Fadez · Puerto Cabello, VE</span></div>
+    <h1>EL ESTÁNDAR<br>DE <mark>ORO</mark> EN<br>CORTES</h1>
+    <p class="hero-sub">Fusionamos técnica clásica con tendencias urbanas.<br>Elevamos tu confianza — no solo tu look.</p>
+    <div class="hero-act">
+      <a href="#reserva" class="btn-g"><span>Reserva tu Turno</span><span>→</span></a>
+      <a href="#lookbook" class="btn-t">Ver el Lookbook</a>
+    </div>
+  </div>
+  <div class="hero-r">
+    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=90" alt="Barbero – Fade Studio" loading="eager">
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-wire"></div>
+    <span class="scroll-word">scroll</span>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="sh rv">
+    <div class="ey">Lo que hacemos</div>
+    <h2 class="st">NUESTROS<br>SERVICIOS</h2>
+    <span class="gr"></span>
+  </div>
+  <div class="sg">
+    <div class="sc rv">
+      <div class="sn">01</div>
+      <div class="si">✂️</div>
+      <h3 class="sname">CORTE SIGNATURE</h3>
+      <p class="sdesc">Degradado perfecto adaptado a la morfología de tu rostro. Técnica milimétrica, acabado cinematográfico.</p>
+      <a class="sm-">Saber más <span class="arr">→</span></a>
+    </div>
+    <div class="sc rv d1">
+      <div class="sn">02</div>
+      <div class="si">🪒</div>
+      <h3 class="sname">BARBA PRO</h3>
+      <p class="sdesc">Esculpido a navaja con aceites esenciales. Definición, hidratación y aroma que marcan la diferencia.</p>
+      <a class="sm-">Saber más <span class="arr">→</span></a>
+    </div>
+    <div class="sc rv d2">
+      <div class="sn">03</div>
+      <div class="si">👑</div>
+      <h3 class="sname">THE FULL EXPERIENCE</h3>
+      <p class="sdesc">Corte, barba y ritual de toalla caliente. El tratamiento premium que mereces de principio a fin.</p>
+      <a class="sm-">Saber más <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- LOOKBOOK -->
+<section id="lookbook">
+  <div class="lh">
+    <div class="rv">
+      <div class="ey">Galería</div>
+      <h2 class="st">THE LOOKBOOK<br><span style="color:var(--g)">— NUESTRA FIRMA</span></h2>
+    </div>
+    <a href="#reserva" class="btn-t rv">Ver todos los estilos →</a>
+  </div>
+  <div class="lg">
+    <div class="li rv"       data-src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=1400&q=90" data-cap="SKIN FADE · Signature Cut">
+      <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=900&q=80" alt="Skin Fade">
+      <div class="lo"><span class="ltag">Skin Fade</span></div><div class="lz">+</div>
+    </div>
+    <div class="li rv d1"    data-src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1400&q=90" data-cap="TEXTURED CROP · Fresh Look">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&q=80" alt="Textured Crop">
+      <div class="lo"><span class="ltag">Textured Crop</span></div><div class="lz">+</div>
+    </div>
+    <div class="li rv d2"    data-src="https://images.unsplash.com/photo-1521490683712-35a1cb235d1c?w=1400&q=90" data-cap="CLASSIC POMPADOUR · Timeless">
+      <img src="https://images.unsplash.com/photo-1521490683712-35a1cb235d1c?w=900&q=80" alt="Classic Pompadour">
+      <div class="lo"><span class="ltag">Classic Pompadour</span></div><div class="lz">+</div>
+    </div>
+    <div class="li rv d1"    data-src="https://images.unsplash.com/photo-1541533848490-bc8115cd6522?w=1400&q=90" data-cap="BEARD SCULPTING · Precision Pro">
+      <img src="https://images.unsplash.com/photo-1541533848490-bc8115cd6522?w=900&q=80" alt="Beard Sculpting">
+      <div class="lo"><span class="ltag">Beard Sculpting</span></div><div class="lz">+</div>
+    </div>
+    <div class="li rv d2"    data-src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=1400&q=90" data-cap="TAPER FADE · Urban Edge">
+      <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=900&q=80" alt="Taper Fade">
+      <div class="lo"><span class="ltag">Taper Fade</span></div><div class="lz">+</div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lbox" id="lbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <div class="lbw">
+    <button class="lbcl" id="lbCl" aria-label="Cerrar">✕</button>
+    <img src="" alt="" id="lbImg">
+    <p class="lbcap" id="lbCap"></p>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- ABOUT -->
+<section id="nosotros">
+  <div class="ai rvl">
+    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=900&q=90" alt="Carlos Fadez — Barbero">
+    <div class="ab"><strong>10+</strong><span>Años de arte</span></div>
+  </div>
+  <div class="at rvr">
+    <div class="ey">Nuestra historia</div>
+    <h2 class="st">PRECISIÓN<br>SIN<br>COMPROMISO</h2>
+    <span class="gr" style="margin-bottom:2.2rem"></span>
+    <p class="ap">Fade Studio no es solo una barbería — es un ritual. Desde el primer trazo de la navaja hasta el último ajuste frente al espejo, cada detalle está calculado para darte el mejor resultado.</p>
+    <p class="ap">Carlos Fadez lidera un equipo de artistas con más de una década perfeccionando técnicas de degradado, esculpido de barba y estilos clásicos para el hombre que no acepta lo ordinario.</p>
+    <div class="as">
+      <div><div class="av">2K+</div><div class="al">Clientes satisfechos</div></div>
+      <div><div class="av">10+</div><div class="al">Años de experiencia</div></div>
+      <div><div class="av">4.9★</div><div class="al">Rating promedio</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonios">
+  <div class="th">
+    <div class="ey">Reviews</div>
+    <h2 class="st">LO QUE DICEN<br>NUESTROS CLIENTES</h2>
+  </div>
+  <div class="tg">
+    <div class="tc rv">
+      <div class="tq">"</div>
+      <div class="ts"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="tt">El mejor fade que me han hecho en la vida. Carlos tiene una precisión brutal. No voy a ningún otro lado desde que lo descubrí.</p>
+      <div class="ta">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Rodrigo" class="tav">
+        <div><div class="tn">Rodrigo Martínez</div><div class="tr">Cliente desde 2019</div></div>
+      </div>
+    </div>
+    <div class="tc rv d1">
+      <div class="tq">"</div>
+      <div class="ts"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="tt">The Full Experience cambió mi rutina de autocuidado. El ritual de toalla caliente es otra cosa. Ambiente, música y servicio a otro nivel.</p>
+      <div class="ta">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Diego" class="tav">
+        <div><div class="tn">Diego Fuentes</div><div class="tr">Cliente frecuente</div></div>
+      </div>
+    </div>
+    <div class="tc rv d2">
+      <div class="tq">"</div>
+      <div class="ts"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="tt">Vine por recomendación y llevo 2 años viniendo cada 2 semanas. El Corte Signature es perfecto para mi tipo de cara. Impecable siempre.</p>
+      <div class="ta">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Andrés" class="tav">
+        <div><div class="tn">Andrés Torres</div><div class="tr">Cliente desde 2022</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- BOOKING CTA -->
+<section id="reserva">
+  <div class="cw rv">
+    <div class="ctag">¿Listo para el cambio?</div>
+    <h2 class="ct">RESERVA<br>TU <em>TURNO</em><br>AHORA</h2>
+    <p class="cs">Agenda en minutos. Disponibilidad limitada —<br>los mejores se reservan con anticipación.</p>
+    <div class="cb">
+      <a href="https://wa.me/584121234567" target="_blank" class="btn-g"><span>📱 WhatsApp</span></a>
+      <a href="tel:+584121234567" class="btn-o">📞 Llamar ahora</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fg">
+    <div class="fb">
+      <span class="logo"><b>FADE</b> STUDIO</span>
+      <p class="ftag">Precisión sin compromiso. Arte masculino en cada corte. Bienvenido al estándar de oro.</p>
+      <div class="fsoc">
+        <a class="fsb" href="#" title="Instagram" aria-label="Instagram">📷</a>
+        <a class="fsb" href="#" title="TikTok"    aria-label="TikTok">🎵</a>
+        <a class="fsb" href="#" title="WhatsApp"  aria-label="WhatsApp">💬</a>
+        <a class="fsb" href="#" title="Facebook"  aria-label="Facebook">📘</a>
+      </div>
+    </div>
+    <div>
+      <div class="fct">Menú</div>
+      <nav class="fl">
+        <a href="#servicios">Servicios</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#testimonios">Reviews</a>
+        <a href="#reserva">Reservar turno</a>
+      </nav>
+    </div>
+    <div>
+      <div class="fct">Contacto</div>
+      <nav class="fl">
+        <a href="#">📍 Puerto Cabello, Venezuela</a>
+        <a href="tel:+584121234567">📞 +58 412 123 4567</a>
+        <a href="mailto:hola@fadestudio.com">✉️ hola@fadestudio.com</a>
+        <a href="#">⏰ Lun – Sáb: 9:00 – 20:00</a>
+      </nav>
+    </div>
+  </div>
+  <div class="fbot">
+    <p class="fco">&copy; 2026 FADE STUDIO · Carlos Fadez · Todos los derechos reservados</p>
+    <nav class="fleg"><a href="#">Privacidad</a><a href="#">Términos</a></nav>
+  </div>
+</footer>
+
+<script>
+(()=>{
+  'use strict';
+
+  /* CURSOR */
+  const dot=document.getElementById('cDot'), ring=document.getElementById('cRing');
+  let mx=0,my=0,rx=window.innerWidth/2,ry=window.innerHeight/2;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  (function raf(){
+    rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(raf);
+  })();
+  document.addEventListener('mousedown',()=>ring.classList.add('c'));
+  document.addEventListener('mouseup',()=>ring.classList.remove('c'));
+  document.querySelectorAll('a,button,.li,.sc').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('h'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('h'));
+  });
+
+  /* NAVBAR */
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>60),{passive:true});
+
+  /* MOBILE MENU */
+  const burger=document.getElementById('burger'), nLinks=document.getElementById('nLinks');
+  burger.addEventListener('click',()=>{
+    const o=burger.classList.toggle('o');
+    nLinks.classList.toggle('o',o);
+    document.body.style.overflow=o?'hidden':'';
+  });
+  nLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    burger.classList.remove('o'); nLinks.classList.remove('o');
+    document.body.style.overflow='';
+  }));
+
+  /* SCROLL REVEAL */
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
+  },{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>obs.observe(el));
+
+  /* LIGHTBOX */
+  const lb=document.getElementById('lbox'), lbImg=document.getElementById('lbImg'),
+        lbCap=document.getElementById('lbCap'), lbCl=document.getElementById('lbCl');
+  const open=(src,cap)=>{
+    lbImg.src=src; lbImg.alt=cap; lbCap.textContent=cap;
+    lb.classList.add('on'); document.body.style.overflow='hidden'; lbCl.focus();
+  };
+  const close=()=>{lb.classList.remove('on'); document.body.style.overflow='';};
+  document.querySelectorAll('.li').forEach(el=>el.addEventListener('click',()=>open(el.dataset.src,el.dataset.cap)));
+  lbCl.addEventListener('click',close);
+  lb.addEventListener('click',e=>{if(e.target===lb)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+
+  /* SMOOTH SCROLL */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+})();
+</script>
+</body>
+</html>
